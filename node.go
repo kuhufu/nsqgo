@@ -71,5 +71,7 @@ func (m *NodeManager) GetAll() []*Node {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 
-	return m.nodes
+	//拷贝，返回副本，不然会有并发问题（watcher协程会增删节点）
+	//增加节点还好说，删除节点会把底层切片索引位置的节点与最后一个节点交换，并将最后一个节点位置置为nil
+	return append(m.nodes[:0:0], m.nodes...)
 }

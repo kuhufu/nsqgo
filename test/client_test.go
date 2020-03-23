@@ -89,5 +89,13 @@ func TestPublish3(t *testing.T) {
 }
 
 func Test(t *testing.T) {
-	fmt.Println(0 % 2)
+	a := []int{1,2,3,4,5,6,7}
+	//var a []int
+	b := append(a[:0:0], a...)
+
+	a[0] = 999
+
+	fmt.Println(b)
+	fmt.Println(cap(a))
+	fmt.Println(cap(b))
 }
