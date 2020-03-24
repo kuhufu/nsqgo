@@ -2,7 +2,7 @@ nsqgo
 ------------------------------
 基于[github.com/nsqio/go-nsq](github.com/nsqio/go-nsq)
 
-基于nsqlookupd提供自动发现nsqd的能力，
+基于nsqlookupd提供自动发现nsqd的能力。
 
 对多个nsqd负载均衡：随机，轮转。
 
