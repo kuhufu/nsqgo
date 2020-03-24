@@ -22,7 +22,7 @@ func TestServer(t *testing.T) {
 	conf.MaxInFlight = 10
 	conf.LookupdPollInterval = time.Second * 10
 
-	c, err := nsq.NewConsumer("fruit", "team_a", conf)
+	c, err := nsq.NewConsumer(proxy"fruit", "team_a", conf)
 	if err != nil {
 		panic(err)
 	}

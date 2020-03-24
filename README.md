@@ -4,7 +4,7 @@ nsqgo
 
 基于nsqlookupd提供自动发现nsqd的能力，
 
-对多个nsqd负载均衡：随机，轮转
+对多个nsqd负载均衡：随机，轮转。
 
 ```go
 import github.com/kuhufu/nsqgo
