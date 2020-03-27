@@ -79,7 +79,7 @@ func TestPublish3(t *testing.T) {
 	time.Sleep(time.Second)
 
 	for i := 0; i < 10000; i++ {
-		err = producer.Publish("fruit", []byte("apple"+strconv.Itoa(i)))
+		err = producer.	Publish("fruit", []byte("apple"+strconv.Itoa(i)))
 		if err != nil {
 			log.Println(err)
 		}

@@ -10,6 +10,8 @@ type Node struct {
 	p     *nsq.Producer
 	err   error
 	exitC chan struct{}
+
+	mu sync.RWMutex
 }
 
 func NewNode(addr string, producer *nsq.Producer) *Node {
@@ -21,7 +23,17 @@ func NewNode(addr string, producer *nsq.Producer) *Node {
 }
 
 func (n *Node) Mark(err error) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+
 	n.err = err
+}
+
+func (n *Node) hasErr() bool {
+	n.mu.RLock()
+	defer n.mu.RUnlock()
+
+	return n.err != nil
 }
 
 func (n *Node) Close() {

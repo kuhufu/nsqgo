@@ -39,6 +39,17 @@ func NewProducer(opts ...Option) (*Producer, error) {
 	return p, nil
 }
 
+func filter(nodes []*Node) []*Node {
+	var res []*Node
+	for _, node := range nodes {
+		if !node.hasErr() {
+			res = append(res, node)
+		}
+	}
+
+	return res
+}
+
 func (p *Producer) Publish(topic string, data []byte) error {
 	var err error
 
@@ -61,17 +72,6 @@ func (p *Producer) Publish(topic string, data []byte) error {
 		break
 	}
 	return err
-}
-
-func filter(nodes []*Node) []*Node {
-	var res []*Node
-	for _, node := range nodes {
-		if node.err == nil {
-			res = append(res, node)
-		}
-	}
-
-	return res
 }
 
 func (p *Producer) reconnect() {
